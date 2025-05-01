@@ -13,8 +13,17 @@ app.use(express.json());
 app.use(cors());
 
 // Initialize Firebase Admin SDK with service account credentials
+// admin.initializeApp({
+//   credential: admin.credential.cert(require("C:/CODE ONLY/important_files/furhome-d9926-firebase-adminsdk-fbsvc-cb3031f626.json")),
+// });
+//NEW
+const serviceAccountBase64 = process.env.FIREBASE_SERVICE_ACCOUNT_BASE64;
+const serviceAccountJSON = JSON.parse(
+  Buffer.from(serviceAccountBase64, 'base64').toString('utf-8')
+);
+
 admin.initializeApp({
-  credential: admin.credential.cert(require("C:/CODE ONLY/important_files/furhome-d9926-firebase-adminsdk-fbsvc-cb3031f626.json")),
+  credential: admin.credential.cert(serviceAccountJSON),
 });
 
 const petRoutes = require("./routes/petRoutes");
