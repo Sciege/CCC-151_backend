@@ -10,8 +10,9 @@ const petSchema = new mongoose.Schema({
   name : String,
   breed: String,
   age: Number,
-  location: String,  // Optional field
+  location: String,  
   imageUrl: String, 
+  imageFileId: String, //appwrite
   ownerId: { type: String, required: true },
   //ownerId: String, // Reference to Firebase User ID
   /// NEW
